@@ -81,11 +81,13 @@ public class MainFrame extends JFrame {
 
         @Override
         public void paint(Graphics g) {
-            clean(g);
-            for (Order order : orders) 
-                g.drawImage(order.image, order.x(this.getWidth()), order.y(this.getHeight()), order.width, order.height, null);                
-           
+        clean(g);
+        for (Order order : orders) {
+            int x = (this.getWidth() - order.width)/2 + order.offset;
+            int y = (this.getHeight() - order.height)/2;
+            g.drawImage(order.image, x, y, order.width, order.height, null); 
         }
+    }
 
         private void clean(Graphics g) {
             g.setColor(Color.white);
@@ -139,6 +141,10 @@ public class MainFrame extends JFrame {
         
         public int y(int height) {
             return (height - this.height) / 2;
-        }   
+        }
+        
+        
     }
+                
+           
 }
